@@ -16,7 +16,7 @@ if [ "$1" == "build" ]; then
   $ASSEMBLER boot.s -o "$OUTDIR/boot.o"
 
   # Compile the kernel
-  $COMPILER -c kernel.c -o "$OUTDIR/kernel.o" -std=gnu99 -ffreestanding -O2 -Wall -Wextra
+  $COMPILER -c kernel/kernel.c -o "$OUTDIR/kernel.o" -std=gnu99 -ffreestanding -O2 -Wall -Wextra
 
   # Link the kernel
   $COMPILER -T linker.ld -o "$OUTDIR/$PROJECT.bin" -ffreestanding -O2 -nostdlib $OUTDIR/boot.o $OUTDIR/kernel.o -lgcc
