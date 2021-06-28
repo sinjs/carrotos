@@ -1,0 +1,17 @@
+image: gcc:10.3.0
+
+build:
+  stage: build
+  before_script:
+    - apt update
+    - apt -y install build-essential curl ccache
+
+  script:
+    - ./crosscompiler.sh
+    - ./build.sh
+    - ./iso.sh
+
+  artifacts:
+    paths:
+      - carrotos.iso
+
