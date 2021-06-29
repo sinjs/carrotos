@@ -25,8 +25,8 @@ wget https://ftp.gnu.org/gnu/binutils/binutils-$BINUTILS_VERSION.tar.gz
 wget https://ftp.gnu.org/gnu/gcc/gcc-$GCC_VERSION/gcc-$GCC_VERSION.tar.gz
 
 echo -e "Extracting"
-tar -xzvf gcc-$GCC_VERSION.tar.gz
-tar -xzvf binutils-$BINUTILS_VERSION.tar.gz
+tar -xzf gcc-$GCC_VERSION.tar.gz
+tar -xzf binutils-$BINUTILS_VERSION.tar.gz
 
 echo -e "Setting variables..."
 export PREFIX="$HOME/opt/cross"
