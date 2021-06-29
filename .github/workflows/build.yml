@@ -42,5 +42,7 @@ jobs:
           ./crosscompiler.sh
 
       - name: Build
-        run: ./build.sh
+        run: |
+          export PATH="$HOME/opt/cross/bin:$PATH"
+          ./build.sh
         
