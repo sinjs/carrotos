@@ -20,6 +20,14 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
+      - name: Cache the cross compiler
+        uses: actions/cache@v2.1.6
+        id: cache-compiler
+        with:
+          path: |
+            ~/src
+          key: ${{ runner.os }}-${{ hashFiles('**/lockfiles') }}
+
       - name: Install build dependencies
         run: |
           sudo apt --yes install build-essential curl libmpfr-dev libmpc-dev libgmp-dev e2fsprogs ccache
@@ -28,6 +36,7 @@ jobs:
           sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-10 900 --slave /usr/bin/g++ g++ /usr/bin/g++-10
 
       - name: Set up the cross compiler
+        if: steps.cache-compiler.outputs.cache-hit != 'true'
         run: |
           chmod +x ./crosscompiler.sh
           ./crosscompiler.sh
