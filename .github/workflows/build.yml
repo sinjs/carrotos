@@ -27,7 +27,7 @@ jobs:
           path: |
             ~/src
             ~/opt
-          key: ${{ runner.os }}-${{ hashFiles('**/lockfiles') }}
+          key: ${{ runner.os }}-crosscompiler
 
       - name: Install build dependencies
         run: |
