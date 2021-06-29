@@ -26,6 +26,7 @@ jobs:
         with:
           path: |
             ~/src
+            ~/opt
           key: ${{ runner.os }}-${{ hashFiles('**/lockfiles') }}
 
       - name: Install build dependencies
