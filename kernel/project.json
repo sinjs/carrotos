@@ -1,7 +1,5 @@
 {
   "id": "kernel",
-  "name": "Kernel",
-  "description": "The CarrotOS kernel.",
   "type": "kernel",
   "libs": ["libc", "libutils"]
 }
