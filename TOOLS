@@ -1,0 +1,72 @@
+#!/usr/bin/python3
+
+import json
+import os
+import subprocess
+import sys
+import shutil
+
+import sys
+sys.path.insert(0, os.path.join(os.getcwd(), "scripts"))
+
+import project
+
+def get_projects(location):
+    """
+    Get all projects in a directory.
+
+    Parameters
+    ----------
+    location: location of the directorie (str).
+
+    Return
+    ------
+    A list of all projects.
+    """
+    projects = {}
+
+    for file in os.listdir(location):
+        # Get project's paths
+        project_path = os.path.join(location, file)
+        json_path = os.path.join(project_path, "project.json")
+
+        if os.path.isdir(project_path) and os.path.exists(json_path):
+            # Load project's json.
+            data = json.loads(open(json_path).read())
+
+            projects[data["id"]] = project.Project(project_path, data)
+
+    return projects
+
+# --- Build Script ----------------------------------------------------------- #
+
+
+if __name__ == "__main__":
+    projects = get_projects(".")
+
+    if len(sys.argv) == 3 and sys.argv[1] == "info":
+        projects[sys.argv[2]].info()
+
+    if len(sys.argv) == 2 and sys.argv[1] == "list":
+        for project in projects:
+            print(project, end=' ')
+        print('')
+
+    if len(sys.argv) == 3 and sys.argv[1] == "clean":
+        projects[sys.argv[2]].clean()
+
+    if len(sys.argv) == 2 and sys.argv[1] == "cleanall":
+        for id in projects:
+            projects[id].clean()
+
+    if len(sys.argv) == 3 and sys.argv[1] == "build":
+        projects[sys.argv[2]].build(projects)
+
+    if len(sys.argv) == 2 and sys.argv[1] == "buildall":
+        for id in projects:
+            if projects[id].build(projects):
+                print("Building %s failed!" % id)
+                exit()
+
+    if (len(sys.argv) == 1) or (len(sys.argv) == 2 and sys.argv[1] == "help"):
+        print("CarrotOS build system.")
