@@ -1,0 +1,6 @@
+{
+  "id": "libc",
+  "name": "C library",
+  "description": "The CarrotOS C libary.",
+  "type": "lib"
+}
