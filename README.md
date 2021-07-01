@@ -1,5 +1,13 @@
 # CarrotOS
 
+---
+
+### ⚠ WARNING ⚠
+#### This is still a "work in progress" and is in no way usable right now!
+#### I'm also doing a rewrite in the [`sinjs/rewrite`](https://github.com/sinmineryt/carrotos/tree/sinjs/rewrite) branch
+
+---
+
 CarrotOS is an operating system made to celebrate carrot day 100 of alex
 
 ## Building
