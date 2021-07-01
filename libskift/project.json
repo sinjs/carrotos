@@ -1,7 +1,5 @@
 {
   "id": "libsk",
-  "name": "API library",
-  "description": "The API for userland applications.",
   "type": "lib",
   "libs": ["libc"]
 }
